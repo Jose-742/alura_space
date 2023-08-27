@@ -86,6 +86,14 @@ class CadastroForms(forms.Form):
     def clean_nome_cadastro(self):
         nome_cadastro = self.cleaned_data.get('nome_cadastro')
 
+        if nome_cadastro:
+            nome_cadastro = nome_cadastro.strip()
+            if ' ' in nome_cadastro:
+                self.add_error(
+                    'nome_cadastro',
+                    ValidationError('Não é possivel inserir espaços dentro do campo Nome de cadastro')
+                )
+
         if User.objects.filter(username=nome_cadastro).exists():
             self.add_error(
                 'nome_cadastro',

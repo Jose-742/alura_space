@@ -25,7 +25,11 @@ def login(request):
             else:
                 messages.error(request, 'Erro ao efetuar login')
                 return redirect('login')
-
+    if request.GET:
+        msg_next = request.GET.get('next')
+        if msg_next:
+            messages.warning(request, 'Usuário não logado')
+            return redirect('login')
 
     return render(request, 'usuarios/login.html', {'form': form})
 
@@ -40,7 +44,7 @@ def cadastro(request):
                 email=form['email'].value(),
                 password=form['senha_1'].value(),
             )
-            #usuario.save()
+            usuario.save()
             messages.success(request, f'Usuário {usuario.username} cadastrado com sucesso!')
             return redirect('cadastro')
 

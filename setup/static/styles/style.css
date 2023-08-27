@@ -419,6 +419,12 @@ table {
     --bs-alert-border-color: #f5c2c7;
 }
 
+.alert-warning {
+    color: rgb(251, 222, 134);
+    background-color: rgb(61, 46, 0);
+    border-color: rgb(124, 92, 0);
+}
+
 .row {
     --bs-gutter-x: 1.5rem;
     --bs-gutter-y: 0;
